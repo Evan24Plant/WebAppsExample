@@ -72,8 +72,11 @@ class CharacterInfo extends React.Component {
         .then(result=> {
             this.setState({
                 charInfo: result.Character,
-                infoStatus: result.Info.Character
+                // No longer relveant with new API version
+                // infoStatus: result.Character
             }, this.changeMessage);
+
+            console.log(result);
             
             this.setState({
                 charJobs: Object.values(this.state.charInfo.ClassJobs)
@@ -86,12 +89,15 @@ class CharacterInfo extends React.Component {
     }
 
     changeMessage() {
-        let newMessage = "";
+        console.log("car");
+        let newMessage = "Car";
+            /* No longer relevant with new API version
             if (this.state.infoStatus.State === 1) {
                 newMessage = "It looks like we haven't seen character #" + this.state.charID + " in a while. Please try again in a few minutes after we gather their info.";
             } else if (this.state.infoStatus.State !== 2) {
                 newMessage = "There was an error finding character #" + this.state.charID + ".";
             }
+            */
         this.setState({
             resultMessage: newMessage
         });  
@@ -118,8 +124,8 @@ class CharacterInfo extends React.Component {
         });
     }
     
-    render() {    
-        if (this.state.infoStatus.State === 2) {
+    render() {
+        if (this.state.charInfo.length !== 0) {
             return (
                 <div style={{ padding: 10 }}>
                     <img src={this.state.charInfo.Portrait} width="500" style={{ float: "left", border: "solid 2px" }} alt="" />

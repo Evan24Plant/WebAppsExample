@@ -92,7 +92,7 @@ class CharacterSearch extends React.Component {
             let pageLinks = [];
             
             for (let i=1; i <= props.pageTotal; i++) {
-                if (i == props.currentPage) {
+                if (i === props.currentPage) {
                     pageLinks.push({"page": i, "checked": true});
                 } else {
                     pageLinks.push({"page": i, "checked": false});
